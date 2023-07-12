@@ -29,7 +29,7 @@ types_c_to_ts = {
 
 }
 
-g_unused_syntax = [';','}','public','get','set','{','const']
+g_unused_syntax = [';', '}', 'public', 'get', 'set', '{', 'const']
 annotations = {
     'DatabaseGenerated(DatabaseGeneratedOption.Identity)': 'identity',
     'Key': 'primary key'
