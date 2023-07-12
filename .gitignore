@@ -1,0 +1,5 @@
+# idea folder, uncomment if you don't need it
+# .idea
+/.vs
+/__pycache__
+/.idea
