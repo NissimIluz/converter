@@ -45,3 +45,11 @@ def is_prop_attribute(line):
 def print_array(array):
     for line in array:
         print(line)
+
+
+def to_set():
+    lines = read_lines()
+
+    for line in lines:
+        name = remove_unused_syntax(line)
+        print(f"{name} = {name}")

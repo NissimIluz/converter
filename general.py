@@ -55,14 +55,14 @@ def auto_mapper_2():
     print("set from:")
     from_base = input()
 
-    lines = helper.read_lines()
+    lines = helper.read_lines_with_stop('123')
 
     for line in lines:
         line = line.strip()
         if line.startswith("public"):
             split_line = line.strip().split(" ")
             property_name = split_line[2]
-            print(f"{property_name}={from_base}.{case_convert.camel_case_to_lowercase(property_name)},")
+            print(f"{property_name}={from_base}.{property_name},")
 
 
 if __name__ == '__main__':

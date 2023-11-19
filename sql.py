@@ -48,8 +48,14 @@ def convert_from_class_to_sql_table(lines=None):
 def convert_from_sql_table_to_class(lines=None):
     if not lines:
         lines = helper.read_lines()
-    class_name = helper.remove_unused_syntax(lines[0], ["CREATE", "TABLE", "dbo", "[", "]", ".", "(", " "])
-    print(f'public class {class_name}')
+    if "CREATE" in lines[0]:
+        class_name = helper.remove_unused_syntax(lines.pop(0), ["CREATE", "TABLE", "dbo", "FOREIGN", "[", "]", ".", "(", " "])
+        print(f'public class {class_name}\n\t')
+    for line in lines: 
+        line = helper.remove_unused_syntax(line)
+        line = handle_types(line, config.types_sql_to_c_type)
+        print('\t',line)
+        
 
 
 def handle_types(line, types):

@@ -4,11 +4,13 @@ types_c_to_sql_type = {
     'Boolean': 'bit',
     'int?': 'int',
     'int': 'int',
-
+    
     'DateTime': 'Date',
     'Guid': 'uniqueidentifier ',
 }
 
+types_sql_to_c_type = {v: k for k, v in types_c_to_sql_type.items()}
+types_sql_to_c_type["text"] : "string"
 
 types_c_to_ts = {
     'string': 'string',
@@ -29,7 +31,7 @@ types_c_to_ts = {
 
 }
 
-g_unused_syntax = [';', '}', 'public', 'get', 'set', '{', 'const']
+g_unused_syntax = [';', '}', 'public', 'get', 'set', '{', 'const', '"']
 annotations = {
     'DatabaseGenerated(DatabaseGeneratedOption.Identity)': 'identity',
     'Key': 'primary key'

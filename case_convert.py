@@ -13,6 +13,9 @@ def convert(type_func):
 
     elif type_func == 'camel_case_to_lowercase':
         result = camel_case_to_lowercase(word)
+
+    elif type_func == 'camel_case_to_uppercase':
+        result = camel_case_to_lowercase(word).upper()
     print(result)
 
 
