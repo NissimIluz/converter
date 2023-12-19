@@ -3,10 +3,10 @@ def convert(type_func):
     word = input()
 
     result = 'not found'
-    if type_func == 'lowercase_to_pascal_case':
-        result = lowercase_to_pascal_case(word)
-    elif type_func == 'lowercase_to_camel_case':
-        result = lowercase_to_camel_case(word)
+    if type_func == 'snake_case_to_pascal_case':
+        result = snake_case_to_pascal_case(word)
+    elif type_func == 'snake_case_to_camel_case':
+        result = snake_case_to_camel_case(word)
 
     elif type_func == 'lowercase_to_uppercase':
         result = lowercase_to_uppercase(word)
@@ -16,22 +16,24 @@ def convert(type_func):
 
     elif type_func == 'camel_case_to_uppercase':
         result = camel_case_to_lowercase(word).upper()
+
+
     print(result)
 
 
-def lowercase_to_pascal_case(old_property_name):
-    return lowercase_to_pascal_or_camel_case(old_property_name, True)
+def snake_case_to_pascal_case(old_property_name):
+    return snake_case_to_pascal_or_camel_case(old_property_name, True)
 
 
-def lowercase_to_camel_case(old_property_name):
-    return lowercase_to_pascal_or_camel_case(old_property_name, False)
+def snake_case_to_camel_case(old_property_name):
+    return snake_case_to_pascal_or_camel_case(old_property_name, False)
 
 
 def lowercase_to_uppercase(old_property_name :str):
     return old_property_name.replace(" ", "_").upper()
 
 
-def lowercase_to_pascal_or_camel_case(old_property_name, next_is_big=True):
+def snake_case_to_pascal_or_camel_case(old_property_name, next_is_big=True):
     property_name = ''
     for letter in old_property_name:
         if letter in ['_']:
@@ -41,7 +43,7 @@ def lowercase_to_pascal_or_camel_case(old_property_name, next_is_big=True):
                 next_is_big = False
                 property_name += letter.upper()
             else:
-                property_name += letter
+                property_name += letter.lower()
     return property_name
 
 
