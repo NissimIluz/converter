@@ -12,7 +12,10 @@ def is_attribute_line(line):
     return line_without_space and (line_without_space[0] == '[' or line_without_space[-1] == ']')
 
 
-def read_lines():
+def read_lines(description=None):
+    if description is not None:
+        print(description + '\n')
+
     lines = []
     while True:
         line = input()
@@ -23,7 +26,10 @@ def read_lines():
     return lines
 
 
-def read_lines_with_stop(stop='123!@#'):
+def read_lines_with_stop(stop='123!@#', description=None):
+    if description is not None:
+        print(description + '\n')
+
     print("To stop enter " + stop)
     lines = []
     while True:

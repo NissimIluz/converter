@@ -14,29 +14,38 @@ def convert(type_func):
     elif type_func == 'camel_case_to_lowercase':
         result = camel_case_to_lowercase(word)
 
-    elif type_func == 'camel_case_to_uppercase':
+    elif type_func == 'pascal_case_or_camel_case_to_uppercase':
         result = camel_case_to_lowercase(word).upper()
 
+    elif type_func == 'word_to_camel_case':
+        result = word_to_camel_case(word)
+
+    elif type_func == 'word_to_kebab_case':
+        result = word_to_kebab_case(word)
 
     print(result)
 
 
+def word_to_camel_case(old_property_name):
+    return word_to_pascal_or_camel_case(old_property_name.strip(), [' ', '_', '-'], False)
+
+
 def snake_case_to_pascal_case(old_property_name):
-    return snake_case_to_pascal_or_camel_case(old_property_name, True)
+    return word_to_pascal_or_camel_case(old_property_name, ['_'], True)
 
 
 def snake_case_to_camel_case(old_property_name):
-    return snake_case_to_pascal_or_camel_case(old_property_name, False)
+    return word_to_pascal_or_camel_case(old_property_name,['_'], False)
 
 
 def lowercase_to_uppercase(old_property_name :str):
     return old_property_name.replace(" ", "_").upper()
 
 
-def snake_case_to_pascal_or_camel_case(old_property_name, next_is_big=True):
+def word_to_pascal_or_camel_case(old_property_name, replace: [], next_is_big=True):
     property_name = ''
     for letter in old_property_name:
-        if letter in ['_']:
+        if letter in replace:
             next_is_big = True
         elif letter not in []:
             if next_is_big:
@@ -55,3 +64,16 @@ def camel_case_to_lowercase(old_property_name: str):
         else:
             property_name += letter
     return property_name
+
+
+def word_to_kebab_case(word, word_starters=['_']):
+    kebab_case = ''
+    for char in word:
+        if char.isupper() or char in word_starters:
+            kebab_case += '-' + char.lower()
+        else:
+            kebab_case += char
+    # Remove leading '-' if present
+    if kebab_case.startswith('-'):
+        kebab_case = kebab_case[1:]
+    return kebab_case

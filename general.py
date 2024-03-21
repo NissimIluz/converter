@@ -7,14 +7,14 @@ def from_class_to_interface():
     for line in lines:
         line = line.strip()
         if line.startswith("public"):
-            print(helper.remove_unused_syntax(line, ["public", "{", "async"]) + ";")
+            print(helper.remove_unused_syntax(line.strip(), ["public", "{", "async"]).strip() + ";")
 
 
 def from_class_to_json():
     lines = helper.read_lines_with_stop()
     if 'class' in lines[0]:
         split_line = lines.pop(0).strip().split(" ")
-        print(f'"{split_line[2]}" :{{')
+        print(f'"{split_line[2].strip()}" :{{')
     else:
         print("{")
     for line in lines:
@@ -23,7 +23,7 @@ def from_class_to_json():
             property_name = split_line[2]
             property_type = helper.remove_unused_syntax(split_line[1], '?')
             if property_type.startswith('int') or \
-                    property_type in ['double', 'bit', 'bool', 'boolean', 'double'] or \
+                    property_type in ['double', 'bit', 'bool', 'boolean', 'double', 'short'] or \
                     property_type.endswith('Enum'):
                 default_value = property_type
             elif property_type.startswith('str'):
@@ -67,3 +67,4 @@ def auto_mapper_2():
 
 if __name__ == '__main__':
     auto_mapper_2()
+
